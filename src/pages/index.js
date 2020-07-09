@@ -8,7 +8,7 @@ for (let i = 0; i < 10000; i++) {
 
 export default function Home() {
   const lotOfComponents = bigArray.map(e => (
-    <div>Im a useless component #{e}</div>
+    <div>Im a useless component # v2{e}</div>
   ))
 
   return (
