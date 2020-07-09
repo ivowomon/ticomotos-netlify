@@ -11,11 +11,5 @@ export default function Home() {
     <div>Im a useless component #{e}</div>
   ))
 
-  return (
-    <div>
-      <h1 style={{ color: `purple`, fontSize: `40px` }}>Hello Gatsby!</h1>
-      <a href="/buscador/">buscador</a>
-      {lotOfComponents}
-    </div>
-  )
+  return <div>Im buscador</div>
 }
