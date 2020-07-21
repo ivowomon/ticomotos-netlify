@@ -15,7 +15,6 @@ const TEMP_IMAGES = [
 ]
 const CustomSlider = () => (
   <Carousel showArrows={true} >
-
     {TEMP_IMAGES.map((imagePath) => (
       <div key={`${imagePath}-carousel`}>
           <img src={imagePath} />
@@ -23,6 +22,14 @@ const CustomSlider = () => (
     ))}
   </Carousel>
 );
+
+const VehicleDetails = ({ data }) => {
+
+
+  return (
+    <div></div>
+  )
+}
 
 const MainCTA = ({ ownerContact }) => {
   const [showContact, setContact] = useState(false)

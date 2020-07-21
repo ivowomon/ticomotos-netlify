@@ -1,17 +1,48 @@
-$imageHeight: 150px  
+@import ../../styles/constants
   
+$imageWidth: 200px  
+
+.linkWrapper
+  text-decoration: none
+
 .container
-  border: 1px solid red
   margin-right: 20px
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.3)
+  transition: 0.3s
+
+.container:hover 
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3)
 
 .imageBody
-  border: 1px solid green
+  position: relative
 
 .vehicleImage
   //position: absolute
-  min-width: 150px
+  min-width: $imageWidth
 
 .contentBody
+  padding: 5px
   //position: relative
-  border: 1px solid blue
-  height: $imageHeight
+
+.vehicleImageDetails
+  display: flex
+  justify-content: space-between
+  padding: 0 5px
+  background-color: rgba(0,0,0,.4)
+  position: absolute
+  bottom: 0px
+  width: 100%
+  color: white
+
+.milesText
+  font-size: 14px
+  line-height: 25px
+
+.shortDescription
+  color: $imperialRed
+  font-weight: bold
+
+.locationText
+  color: $manatee
+
+
