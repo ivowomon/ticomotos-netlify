@@ -6,9 +6,10 @@ import HomeLayout from "../layouts/homeLayout"
 import VehicleList from "../components/vehicleList/vehicleList"
 
 export default function Home({ data }) {
-  const posts = get(data, 'allWordpressWpVehicles.edges', [])
+  const posts = get(data, 'allStrapiVehicles.edges', [])
+  console.log("Home -> data", data)
   console.log("Home -> posts", posts)
-  const postsByTag = groupBy(posts, 'node.tags[0].slug')// change this to allow multiple tags
+  const postsByTag = groupBy(posts, 'node.tags[0].name')// change this to allow multiple tags
   console.log("Home -> postsByTag", postsByTag)
 
   
@@ -41,7 +42,7 @@ export default function Home({ data }) {
 
 export const pageQuery = graphql`
   query PostsByTagQuery($tags: [String]!) {
-    allWordpressWpVehicles(filter: {tags: {elemMatch:{name:{in:$tags}}}}) {
+    allStrapiVehicles(filter: {tags: {elemMatch:{name:{in:$tags}}}}) {
       edges {
         node {
           ...VehicleCardFields

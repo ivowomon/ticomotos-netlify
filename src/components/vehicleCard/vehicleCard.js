@@ -9,15 +9,15 @@ const temporalImageUrl = "https://cdn1.cycletrader.com/v1/media/5dbaf6dcc7c3f059
 
 export default function VehicleCard({ node }) {
   //console.log("TempVehicle -> node", node)
-  const mainTitle = `${node.acf.vehicles_year} ${node.acf.vehicles_brand.post_title}`
+  const mainTitle = `${node.year} ${node.model.name} | ${node.brand.name}`
 
   return (
-    <Link className="linkWrapper" to={`/${node.slug}/`}>
+    <Link className="linkWrapper" to={`/${node.strapiId}/`}>
       <div className="container">
         <div className="imageBody">
           <div className="vehicleImageDetails">
-            <span>₡{node.acf.vehicles_price}</span>
-            <span className="milesText">{formatMileage(node.acf.vehicles_mileage)}</span>
+            <span>₡{node.price}</span>
+            <span className="milesText">{formatMileage(node.mileage)}</span>
           </div>
           <img className="vehicleImage" src={temporalImageUrl}/>
         </div>
@@ -26,7 +26,7 @@ export default function VehicleCard({ node }) {
             {mainTitle}
           </div>
           <div className="locationText">
-            {node.acf.vehicles_location.state}
+            {node.location.address}
           </div>
         </div>
       </div>
@@ -34,25 +34,43 @@ export default function VehicleCard({ node }) {
   )
 }
 export const query = graphql`
-  fragment VehicleCardFields on wordpress__wp_vehicles {
-    title
-    slug
-    tags {
-      slug
+  fragment VehicleCardFields on StrapiVehicles {
+    brand {
+      name
     }
-    acf {
-      vehicles_mileage
-      vehicles_year
-      vehicles_location {
-        lng
-        lat
-        state
-        city
+    tags {
+      name
+    }
+    model {
+      name
+    }
+    location{
+      address
+    }
+    year
+    displacement
+    mileage
+    negotiable_price
+    plate
+    trade
+    id
+    strapiId
+    price
+    photos {
+      formats {
+        large {
+          url
+        }
+        medium {
+          url
+        }
+        small {
+          url
+        }
+        thumbnail {
+          url
+        }
       }
-      vehicles_brand {
-        post_title
-      }
-      vehicles_price
     }
   }
 `

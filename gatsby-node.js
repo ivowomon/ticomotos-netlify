@@ -1,4 +1,5 @@
 const path = require('path')
+const _ = require('lodash')
 
 exports.onCreateNode = ({ node }) => {
   console.log("internal type", node.internal.type)
@@ -17,29 +18,47 @@ exports.createPages = ({ actions, graphql }) => {
   })
 
   return graphql(`
-    fragment VehicleCardFields on wordpress__wp_vehicles {
-      title
-      slug
-      tags {
-        slug
+    fragment VehicleCardFields on StrapiVehicles {
+      brand {
+        name
       }
-      acf {
-        vehicles_mileage
-        vehicles_year
-        vehicles_location {
-          lng
-          lat
-          state
-          city
+      tags {
+        name
+      }
+      model {
+        name
+      }
+      location{
+        address
+      }
+      year
+      displacement
+      mileage
+      negotiable_price
+      plate
+      trade
+      id
+      strapiId
+      price
+      photos {
+        formats {
+          large {
+            url
+          }
+          medium {
+            url
+          }
+          small {
+            url
+          }
+          thumbnail {
+            url
+          }
         }
-        vehicles_brand {
-          post_title
-        }
-        vehicles_price
       }
     }
     {
-      allWordpressWpVehicles {
+      allStrapiVehicles {
         edges {
           node {
             ...VehicleCardFields
@@ -55,13 +74,13 @@ exports.createPages = ({ actions, graphql }) => {
 
     const vehicleTemplate = path.resolve(`./src/templates/vehicle.js`)
 
-    const posts = result.data.allWordpressWpVehicles.edges
+    const posts = _.get(result,'data.allStrapiVehicles.edges', [])
 
     // Iterate over the array of posts
     posts.forEach(({ node: post }) => {
       // Create the Gatsby page for this WordPress post
       createPage({
-        path: `/${post.slug}/`,
+        path: `/${post.strapiId}/`,
         component: vehicleTemplate,
         context: {
           post: post,

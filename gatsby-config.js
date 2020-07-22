@@ -38,32 +38,16 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: `gatsby-source-strapi`,
       options: {
-        // The base url to your WP site.
-        baseUrl: 'localhost:8000',
-        // WP.com sites set to true, WP.org set to false
-        hostingWPCOM: false,
-        // The protocol. This can be http or https.
-        protocol: 'http',
-        // Use 'Advanced Custom Fields' Wordpress plugin
-        useACF: true,
-        auth: {
-
-          wpcom_user: "masteruser",
-          wpcom_pass: "1234",
+        apiURL: `http://localhost:1337`,
+        queryLimit: 1000, // Default to 100
+        contentTypes: ['vehicles'],
+    // Possibility to login with a strapi user, when content types are not publically available (optional).
+        loginData: {
+          identifier: "masteruser",
+          password: "",
         },
-        includedRoutes: [
-          "**/categories",
-          "**/posts",
-          "**/pages",
-          "**/media",
-          "**/place",
-          "**/vehicles",
-          "**/tags",
-        ],
-        // Set to true to debug endpoints on 'gatsby build'
-        verboseOutput: false,
       },
     },
     'gatsby-plugin-sharp',
