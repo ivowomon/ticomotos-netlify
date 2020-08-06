@@ -15,7 +15,7 @@ export default function Home({ data }) {
   
   return (
     <HomeLayout>
-      <VehicleList items={postsByTag["recommended"]} />
+      <VehicleList items={postsByTag["featured"]} />
       <h1>Im content title</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

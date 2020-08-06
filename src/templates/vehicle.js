@@ -3,8 +3,10 @@ import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 import HomeLayout from "../layouts/homeLayout"
-import VehicleCard from "../components/vehicleCard/vehicleCard"
+import VehicleDetails from "../components/vehicleDetails/vehicleDetails"
 import { formatImagesUrls } from "../utils/formatVehicleData"
+
+import './vehicle.sass'
 
 const TEMP_IMAGES = [
   '/harley.jpg',
@@ -24,13 +26,6 @@ const CustomSlider = ({ imagesUrls }) => (
   </Carousel>
 );
 
-const VehicleDetails = ({ data }) => {
-
-
-  return (
-    <div></div>
-  )
-}
 
 const MainCTA = ({ ownerContact }) => {
   const [showContact, setContact] = useState(false)
@@ -50,8 +45,14 @@ export default function Home(props) {
 
   return (
     <HomeLayout>
-      <CustomSlider imagesUrls={imagesUrls}/>
-      <VehicleCard node={postData} />
+      <div className="details-container">
+        <div className="details-column">
+          <CustomSlider imagesUrls={imagesUrls} />
+        </div>
+        <div className="details-column">
+          <VehicleDetails data={postData} />
+        </div>
+      </div>
       <MainCTA ownerContact={'+(##) ####-####'}/>
     </HomeLayout>
   )
