@@ -1,6 +1,1 @@
-Things used:
-
-React
-TDD
-Gatsbyjs
-Netlify
+## Check develop README
